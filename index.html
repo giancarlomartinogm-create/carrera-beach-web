@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carrera Beach · Resto, tragos y café en Villa Gesell</title>
+<meta name="description" content="Carrera Beach, resto-bar en Villa Gesell. Comida, tragos de autor, cerveza artesanal y café. Viernes, sábados y domingos desde las 17 h. 3x2 en gin tirado y fernet.">
+<meta name="theme-color" content="#0b0a08">
+<meta property="og:title" content="Carrera Beach · Villa Gesell">
+<meta property="og:description" content="Resto · Drinks · Coffee. Vie, sáb y dom desde las 17 h.">
+<meta property="og:image" content="img/atardecer.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Yellowtail&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/atardecer.jpg">
+<style>
+:root{
+  --negro:#0b0a08; --negro2:#15130f; --carbon:#1e1b16;
+  --oro:#d4a845; --oro2:#f0cd77; --crema:#f5ecdc; --arena:#e9d7b4;
+  --coral:#e8794a; --texto:#efe7d8; --suave:#b9ad98;
+  --r:18px; --max:1180px;
+  --cond:'Anton', 'Impact', sans-serif;
+  --script:'Yellowtail', cursive;
+  --sans:'Manrope', system-ui, -apple-system, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--negro);color:var(--texto);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oro2);outline-offset:3px;border-radius:6px}
+.wrap{width:min(var(--max),100% - 40px);margin-inline:auto}
+.saltar{position:absolute;left:-999px;top:8px;background:var(--oro);color:#000;padding:8px 14px;border-radius:8px;z-index:100}
+.saltar:focus{left:8px}
+
+/* ---------- logo ---------- */
+.logo{display:inline-flex;flex-direction:column;align-items:center;line-height:.8;text-decoration:none;position:relative}
+.logo b{font:400 1.7rem/1 var(--cond);letter-spacing:.06em;color:var(--oro)}
+.logo i{font:400 1.25rem/1 var(--script);color:#fff;margin-top:-.55em;transform:rotate(-8deg);text-shadow:0 1px 4px #000}
+
+/* ---------- barra ---------- */
+.barra{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s;padding-top:env(safe-area-inset-top)}
+.barra.solida{background:rgba(11,10,8,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(212,168,69,.25)}
+.barra .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.menu{display:none;gap:26px;list-style:none}
+.menu a{text-decoration:none;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crema);opacity:.85}
+.menu a:hover{opacity:1;color:var(--oro2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:800;font-size:.95rem;letter-spacing:.02em;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn-oro{background:linear-gradient(135deg,var(--oro2),var(--oro));color:#1a1306;box-shadow:0 8px 24px -8px rgba(212,168,69,.6)}
+.btn-oro:hover{box-shadow:0 10px 30px -6px rgba(212,168,69,.85)}
+.btn-linea{background:transparent;color:var(--crema);border:1.5px solid rgba(245,236,220,.45)}
+.btn-linea:hover{border-color:var(--oro2);color:var(--oro2)}
+.btn svg{width:20px;height:20px;flex:none}
+.barra .btn{min-height:40px;padding:0 16px;font-size:.85rem}
+.hamb{background:none;border:0;color:var(--crema);width:44px;height:44px;display:grid;place-items:center;cursor:pointer}
+.hamb svg{width:26px;height:26px}
+.panel{position:fixed;inset:0;background:rgba(11,10,8,.97);z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;opacity:0;pointer-events:none;transition:opacity .25s}
+.panel.abierto{opacity:1;pointer-events:auto}
+.panel a{font:400 2.2rem/1 var(--cond);letter-spacing:.04em;text-decoration:none;color:var(--crema)}
+.panel a:hover{color:var(--oro2)}
+.panel .cerrar{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px}
+
+/* ---------- portada ---------- */
+.portada{position:relative;min-height:100svh;display:grid;align-items:end;isolation:isolate;overflow:hidden}
+.portada img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%;z-index:-2;transform:scale(1.06);animation:respira 18s ease-in-out infinite alternate}
+@keyframes respira{to{transform:scale(1.14) translateY(-1.5%)}}
+.portada::after{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(11,10,8,.6) 0%,rgba(11,10,8,.2) 22%,rgba(11,10,8,.55) 48%,rgba(11,10,8,.97) 90%),
+  linear-gradient(90deg,rgba(11,10,8,.55),transparent 70%),
+  radial-gradient(120% 60% at 70% 40%,rgba(232,121,74,.22),transparent 60%)}
+.portada .wrap{padding:0 0 calc(40px + env(safe-area-inset-bottom))}
+.etiqueta{text-shadow:0 1px 8px rgba(0,0,0,.7);display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--oro2)}
+.etiqueta::before{content:"";width:26px;height:1.5px;background:currentColor}
+.titular{margin:14px 0 10px;line-height:.86}
+.titular b{display:block;font:400 clamp(4.2rem,22vw,10rem)/.86 var(--cond);letter-spacing:.02em;color:var(--oro);text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.titular i{display:block;font:400 clamp(2.6rem,13vw,5.6rem)/1 var(--script);color:#fff;margin:-.42em 0 0 .28em;transform:rotate(-6deg);transform-origin:left;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.bajada{font-size:1.08rem;max-width:34ch;color:var(--crema);margin-top:18px}
+.bajada strong{color:var(--oro2)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.acciones .btn{flex:1 1 220px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-size:.8rem;font-weight:700;padding:7px 12px;border-radius:999px;background:rgba(245,236,220,.1);border:1px solid rgba(245,236,220,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.chip span{color:var(--oro2)}
+
+/* ---------- secciones ---------- */
+section{padding:84px 0;position:relative}
+.cabeza{margin-bottom:34px}
+.cabeza h2{font:400 clamp(2.4rem,9vw,4.4rem)/.95 var(--cond);letter-spacing:.015em;text-transform:uppercase;color:var(--crema);margin-top:10px}
+.cabeza h2 em{font:400 .8em/1 var(--script);color:var(--oro);text-transform:none;letter-spacing:0;font-style:normal}
+.cabeza p{color:var(--suave);max-width:52ch;margin-top:12px}
+.ola{display:block;width:100%;height:28px;color:var(--negro2)}
+
+/* experiencia */
+.exp{background:var(--negro2)}
+.exp-grid{display:grid;gap:28px}
+.exp-foto{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+.exp-foto img{width:100%;height:100%;object-fit:cover}
+.exp-foto figcaption{position:absolute;left:14px;bottom:14px;font:400 1.6rem/1 var(--script);color:#fff;text-shadow:0 2px 10px #000}
+.pilares{display:grid;gap:12px;margin-top:22px}
+.pilar{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:14px;background:rgba(245,236,220,.04);border:1px solid rgba(212,168,69,.16)}
+.pilar .ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(212,168,69,.14);color:var(--oro2)}
+.pilar .ic svg{width:22px;height:22px}
+.pilar h3{font-size:1.02rem;font-weight:800;color:var(--crema)}
+.pilar p{font-size:.93rem;color:var(--suave)}
+
+/* carta */
+.promo{position:relative;overflow:hidden;border-radius:22px;padding:26px 22px;margin-bottom:28px;background:
+  radial-gradient(140% 120% at 100% 0%,rgba(232,121,74,.55),transparent 55%),
+  linear-gradient(135deg,#2a1d0b,#120e08);border:1px solid rgba(240,205,119,.4)}
+.promo .grande{font:400 clamp(4.6rem,24vw,8rem)/.8 var(--cond);color:var(--oro2);letter-spacing:.01em}
+.promo h3{font:400 1.7rem/1.05 var(--cond);text-transform:uppercase;letter-spacing:.03em;margin-top:6px}
+.promo p{color:var(--crema);opacity:.85;margin-top:6px;font-size:.95rem}
+.promo .sello{position:absolute;right:-14px;top:18px;transform:rotate(12deg);font:400 1.5rem/1 var(--script);color:#1a1306;background:var(--oro2);padding:6px 22px}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px 22px;padding:0 20px 4px;scroll-snap-type:x mandatory}
+.tabs::-webkit-scrollbar{display:none}
+.tab{scroll-snap-align:start;flex:none;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(245,236,220,.22);background:transparent;color:var(--crema);font:700 .9rem var(--sans);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--oro);border-color:var(--oro);color:#1a1306}
+.lista{display:none;gap:14px}
+.lista.activa{display:grid}
+.plato{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;padding:12px;border-radius:16px;background:rgba(245,236,220,.035);border:1px solid rgba(245,236,220,.08)}
+.plato.sin{grid-template-columns:1fr;border-left:3px solid var(--oro);padding-left:18px}
+.plato img{width:96px;height:96px;object-fit:cover;border-radius:12px}
+.plato h3{font-size:1.04rem;font-weight:800;color:var(--crema);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.plato p{font-size:.9rem;color:var(--suave);line-height:1.45;margin-top:3px}
+.marca{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(232,121,74,.18);color:#ffb08c}
+.precio{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:700;color:var(--oro2);opacity:.8}
+.nota{font-size:.85rem;color:var(--suave);margin-top:18px}
+.nota a{color:var(--oro2)}
+
+/* groove */
+.groove{background:#07060a;overflow:hidden}
+.groove::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 20% 20%,rgba(120,70,220,.28),transparent 60%),radial-gradient(50% 40% at 90% 80%,rgba(232,121,74,.2),transparent 60%);pointer-events:none}
+.groove .wrap{position:relative}
+.groove-logo{display:block;font:400 clamp(3.4rem,16vw,7rem)/.9 var(--cond);letter-spacing:.04em;color:transparent;-webkit-text-stroke:1.5px var(--crema);text-transform:uppercase}
+.groove-logo span{color:var(--crema);-webkit-text-stroke:0}
+.flyer{display:grid;gap:0;border-radius:22px;overflow:hidden;border:1px solid rgba(245,236,220,.14);margin-top:28px;background:var(--carbon)}
+.flyer img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;filter:saturate(1.1) contrast(1.05)}
+.flyer-txt{padding:22px}
+.fecha{display:inline-block;font-weight:800;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#cdb8ff}
+.flyer-txt h3{font:400 2.4rem/1 var(--cond);text-transform:uppercase;margin:8px 0}
+.flyer-txt ul{list-style:none;display:grid;gap:6px;color:var(--suave);font-size:.95rem;margin-bottom:18px}
+.flyer-txt li::before{content:"✦ ";color:var(--oro)}
+
+/* galería */
+.galeria{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.galeria figure{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:1}
+.galeria figure:nth-child(1){grid-column:span 2;aspect-ratio:16/10}
+.galeria img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.galeria figure:hover img{transform:scale(1.06)}
+.galeria figcaption{position:absolute;left:10px;bottom:8px;font:400 1.15rem/1 var(--script);color:#fff;text-shadow:0 2px 8px #000}
+
+/* reseñas */
+.resenas{background:var(--negro2)}
+.puntaje{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.puntaje .num{font:400 4.4rem/1 var(--cond);color:var(--oro2)}
+.estrellas{color:var(--oro2);letter-spacing:3px;font-size:1.2rem}
+.puntaje small{display:block;color:var(--suave);font-size:.88rem}
+.carrusel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:4px 20px 14px;scrollbar-width:none}
+.carrusel::-webkit-scrollbar{display:none}
+.resena{scroll-snap-align:start;flex:0 0 86%;padding:22px;border-radius:18px;background:var(--crema);color:#231b10;position:relative}
+.resena::before{content:"“";position:absolute;top:-6px;right:16px;font:400 5rem/1 var(--cond);color:var(--oro);opacity:.5}
+.resena p{font-size:1rem;line-height:1.55}
+.resena footer{margin-top:14px;font-weight:800;font-size:.88rem}
+.resena footer span{display:block;font-weight:500;color:#7a6a50;font-size:.8rem}
+
+/* ubicación */
+.ubi-grid{display:grid;gap:18px}
+.mapa{border-radius:var(--r);overflow:hidden;border:1px solid rgba(212,168,69,.25);aspect-ratio:4/3;background:var(--carbon)}
+.mapa iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+.ficha{padding:22px;border-radius:var(--r);background:var(--negro2);border:1px solid rgba(212,168,69,.18)}
+.ficha h3{font:400 1.5rem/1 var(--cond);text-transform:uppercase;letter-spacing:.03em;color:var(--oro2);margin-bottom:10px}
+.ficha + .ficha{margin-top:0}
+.horario{list-style:none;display:grid;gap:2px}
+.horario li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed rgba(245,236,220,.12);font-size:.96rem}
+.horario li.on{color:var(--crema);font-weight:700}
+.horario li.off{color:#857a68}
+.horario li.hoy{color:var(--oro2)}
+.estado{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:700;margin-bottom:10px}
+.estado::before{content:"";width:9px;height:9px;border-radius:50%;background:#7a7060}
+.estado.abierto::before{background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.2)}
+.dir{font-size:1.02rem;color:var(--crema)}
+.pend{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#ffb08c;border:1px dashed rgba(232,121,74,.6);border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:middle}
+
+/* contacto */
+.contacto{text-align:center;background:
+  linear-gradient(180deg,var(--negro) 0%,rgba(11,10,8,.6) 40%,var(--negro) 100%),url(img/muelle.jpg) center/cover}
+.contacto .cabeza{margin-inline:auto}
+.contacto .cabeza p{margin-inline:auto}
+.redes{display:grid;gap:12px;max-width:440px;margin:0 auto}
+.redes .btn{width:100%}
+
+footer.pie{padding:44px 0 calc(110px + env(safe-area-inset-bottom));border-top:1px solid rgba(212,168,69,.18);text-align:center;color:var(--suave);font-size:.84rem}
+footer.pie .logo{margin-bottom:14px}
+footer.pie b{font-size:2.2rem}
+footer.pie i{font-size:1.6rem}
+.creditos{margin-top:10px;font-size:.72rem;opacity:.7}
+.creditos a{color:inherit}
+
+/* WhatsApp flotante */
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 28px -6px rgba(37,211,102,.6);text-decoration:none;transition:transform .2s}
+.wa:hover{transform:scale(1.06)}
+.wa svg{width:32px;height:32px}
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:pulso 2.6s ease-out infinite}
+@keyframes pulso{from{transform:scale(1);opacity:.8}to{transform:scale(1.55);opacity:0}}
+
+/* aparición */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rev.ver{opacity:1;transform:none}
+
+/* ---------- tablet / escritorio ---------- */
+@media (min-width:760px){
+  .galeria{grid-template-columns:repeat(4,1fr)}
+  .galeria figure:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+  .resena{flex-basis:46%}
+  .lista.activa{grid-template-columns:1fr 1fr}
+  .ubi-grid{grid-template-columns:1.3fr 1fr}
+  .ubi-grid .mapa{grid-row:span 2;aspect-ratio:auto;min-height:420px}
+}
+@media (min-width:1024px){
+  .menu{display:flex}
+  .hamb{display:none}
+  section{padding:120px 0}
+  .portada{align-items:center}
+  .portada .wrap{padding:120px 0 80px}
+  .acciones .btn{flex:0 0 auto}
+  .exp-grid{grid-template-columns:1fr 1.1fr;align-items:center;gap:64px}
+  .pilares{grid-template-columns:1fr 1fr}
+  .carta-grid{display:grid;grid-template-columns:.85fr 1.6fr;gap:40px;align-items:start}
+  .promo{position:sticky;top:96px;padding:34px 30px}
+  .tabs{margin:0 0 22px;padding:0}
+  .flyer{grid-template-columns:1.2fr 1fr;align-items:center}
+  .flyer img{height:100%;aspect-ratio:auto;min-height:380px}
+  .flyer-txt{padding:40px}
+  .resena{flex-basis:calc(33.333% - 10px)}
+  .carrusel{margin:0;padding:4px 0 14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra" id="barra">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Carrera Beach, volver al inicio"><b>CARRERA</b><i>Beach</i></a>
+    <nav aria-label="Principal">
+      <ul class="menu">
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#carta">Carta</a></li>
+        <li><a href="#groove">Groove</a></li>
+        <li><a href="#resenas">Reseñas</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-oro js-wa" href="#contacto" style="display:none" id="reservaBarra">Reservar</a>
+    <button class="hamb" id="abrirMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="panel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M10 17h10"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="panel" id="panel" role="dialog" aria-modal="true" aria-label="Menú">
+  <button class="hamb cerrar" id="cerrarMenu" aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#experiencia">Experiencia</a>
+  <a href="#carta">Carta</a>
+  <a href="#groove">Noches Groove</a>
+  <a href="#galeria">Galería</a>
+  <a href="#resenas">Reseñas</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a class="btn btn-oro js-wa" href="#contacto" style="font:800 1rem var(--sans);margin-top:10px">Reservar por WhatsApp</a>
+</div>
+
+<main id="contenido">
+<!-- PORTADA -->
+<section class="portada" id="inicio" aria-label="Portada">
+  <img src="img/atardecer.jpg" alt="Atardecer sobre la arena de una playa de la costa atlántica" fetchpriority="high">
+  <div class="wrap">
+    <span class="etiqueta">Villa Gesell · Costa atlántica</span>
+    <h1 class="titular"><b>CARRERA</b><i>Beach</i></h1>
+    <p class="bajada">Resto, tragos y café. Arrancamos con el atardecer y seguimos con música hasta tarde. <strong>Viernes, sábados y domingos desde las 17 h.</strong></p>
+    <div class="acciones">
+      <a class="btn btn-oro js-wa" href="#contacto" data-msg="Hola Carrera Beach, quiero reservar una mesa para">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+        Reservar por WhatsApp
+      </a>
+      <a class="btn btn-linea" href="#carta">Ver la carta</a>
+    </div>
+    <div class="chips" aria-label="Datos rápidos">
+      <span class="chip"><span>★ 4,5</span> en Google · 1.360 opiniones</span>
+      <span class="chip"><span>3x2</span> gin tirado y fernet</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="exp" id="experiencia">
+  <div class="wrap exp-grid">
+    <figure class="exp-foto rev">
+      <img src="img/barra.jpg" alt="Barra de tragos con gente compartiendo de noche" loading="lazy" width="1400" height="787">
+      <figcaption>del sunset a la pista</figcaption>
+    </figure>
+    <div class="rev">
+      <div class="cabeza">
+        <span class="etiqueta">Quiénes somos</span>
+        <h2>Un rincón para <em>quedarse</em></h2>
+        <p>Carrera Beach es un resto-bar en el centro de Villa Gesell, a pocas cuadras del mar. Venís a comer algo rico, seguís con un gin o una artesanal bien fría y, cuando cae el sol, la música hace el resto.</p>
+      </div>
+      <div class="pilares">
+        <div class="pilar"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 11h16M5 11a7 7 0 0 0 14 0M12 4v3"/></svg></div><div><h3>Resto</h3><p>Rabas, hamburguesas, pizzas y las famosas papas Carrera.</p></div></div>
+        <div class="pilar"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3h12l-5 8v7m-4 3h8M8 7h8"/></svg></div><div><h3>Drinks</h3><p>Tragos de autor, gin tirado, fernet y cerveza artesanal.</p></div></div>
+        <div class="pilar"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3m4-3v3"/></svg></div><div><h3>Coffee</h3><p>Café para la tarde antes de que arranque la noche.</p></div></div>
+        <div class="pilar"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 18V6l11-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg></div><div><h3>Música</h3><p>DJ los fines de semana y las noches Groove Gesell.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section id="carta">
+  <div class="wrap">
+    <div class="cabeza rev">
+      <span class="etiqueta">La carta</span>
+      <h2>Para picar, brindar <em>y repetir</em></h2>
+      <p>Lo más pedido por quienes ya vinieron.</p>
+    </div>
+    <div class="carta-grid">
+      <aside class="promo rev" aria-label="Promoción">
+        <span class="sello">promo</span>
+        <div class="grande">3x2</div>
+        <h3>Gin tirado y fernet</h3>
+        <p>Pedís tres, pagás dos. La mejor excusa para venir en grupo.</p>
+        <a class="btn btn-oro js-wa" href="#contacto" data-msg="Hola Carrera Beach, quiero reservar para aprovechar el 3x2. Somos" style="margin-top:18px;width:100%">Reservar mesa</a>
+      </aside>
+      <div>
+        <div class="tabs" role="tablist" aria-label="Secciones de la carta">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="c-resto" id="t-resto">Resto</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="c-tragos" id="t-tragos" tabindex="-1">Tragos de autor</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="c-cafe" id="t-cafe" tabindex="-1">Café</button>
+        </div>
+
+        <div class="lista activa" id="c-resto" role="tabpanel" aria-labelledby="t-resto">
+          <article class="plato"><img src="img/rabas.jpg" alt="Rabas fritas" loading="lazy" width="96" height="96"><div><h3>Rabas <span class="marca">Favorito</span></h3><p>Crocantes, para compartir. Las que más nombran en las reseñas.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato"><img src="img/burger.jpg" alt="Hamburguesa con papas fritas" loading="lazy" width="96" height="96"><div><h3>Hamburguesa con papas</h3><p>Clásica y abundante, con papas fritas.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato sin"><div><h3>Papas Carrera <span class="marca">De la casa</span></h3><p>El plato que lleva nuestro nombre.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato sin"><div><h3>Pizza de jamón y rúcula</h3><p>Ideal para la mesa larga.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato sin"><div><h3>Milanesa</h3><p>Un clásico argentino, como corresponde.</p><span class="precio">Precio por confirmar</span></div></article>
+        </div>
+
+        <div class="lista" id="c-tragos" role="tabpanel" aria-labelledby="t-tragos" hidden>
+          <article class="plato"><img src="img/gin.jpg" alt="Gin tonic con lima" loading="lazy" width="96" height="96"><div><h3>Gin tirado <span class="marca">3x2</span></h3><p>Fresco, servido al momento.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato"><img src="img/fernet.jpg" alt="Fernet con cola" loading="lazy" width="96" height="96"><div><h3>Fernet <span class="marca">3x2</span></h3><p>El de siempre, bien cargado de hielo.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato"><img src="img/barra.jpg" alt="Bartender preparando tragos" loading="lazy" width="96" height="96"><div><h3>Tragos de autor</h3><p>Creaciones propias de la barra.</p><span class="precio">Precio por confirmar</span></div></article>
+          <article class="plato"><img src="img/cerveza.jpg" alt="Dos copas de cerveza artesanal" loading="lazy" width="96" height="96"><div><h3>Cerveza artesanal</h3><p>De Cheverry, nuestra cervecería aliada.</p><span class="precio">Precio por confirmar</span></div></article>
+        </div>
+
+        <div class="lista" id="c-cafe" role="tabpanel" aria-labelledby="t-cafe" hidden>
+          <article class="plato"><img src="img/cafe.jpg" alt="Café con leche con arte latte" loading="lazy" width="96" height="96"><div><h3>Café</h3><p>Para la tarde, antes de que arranque la noche. Variedades por confirmar.</p><span class="precio">Precio por confirmar</span></div></article>
+        </div>
+
+        <p class="nota">La carta completa con precios se actualiza en el local. Consultá por <a class="js-wa" href="#contacto" data-msg="Hola Carrera Beach, ¿me pasan la carta con precios?">WhatsApp</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROOVE -->
+<section class="groove" id="groove">
+  <div class="wrap">
+    <div class="cabeza rev">
+      <span class="etiqueta" style="color:#cdb8ff">Noches</span>
+      <h2 aria-label="Groove Gesell"><span class="groove-logo" aria-hidden="true">Gro<span>o</span>ve</span><em aria-hidden="true" style="display:block;margin:-.15em 0 0 .3em;transform:rotate(-5deg);transform-origin:left">Gesell</em></h2>
+      <p>Cuando baja el sol, Carrera cambia de piel: DJ invitados, luces y pista. Capacidad limitada y entrada con ticket.</p>
+    </div>
+    <article class="flyer rev">
+      <img src="img/dj.jpg" alt="DJ tocando en cabina con luces de fiesta" loading="lazy" width="1400" height="1050">
+      <div class="flyer-txt">
+        <span class="fecha">Última edición · Sábado 19 de septiembre</span>
+        <h3>Carolain</h3>
+        <ul>
+          <li>Junto a Fenix Music y Bará</li>
+          <li>Capacidad limitada</li>
+          <li>Acceso solo con ticket</li>
+        </ul>
+        <a class="btn btn-oro" href="https://www.instagram.com/carrerabeach/" target="_blank" rel="noopener">Próximas fechas en Instagram</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="cabeza rev">
+      <span class="etiqueta">Galería</span>
+      <h2>Postales <em>de verano</em></h2>
+    </div>
+    <div class="galeria rev">
+      <figure><img src="img/playa.jpg" alt="Playa de Villa Gesell con carpas" loading="lazy"><figcaption>Villa Gesell</figcaption></figure>
+      <figure><img src="img/gin.jpg" alt="Gin tonic" loading="lazy"><figcaption>gin time</figcaption></figure>
+      <figure><img src="img/rabas.jpg" alt="Rabas" loading="lazy"></figure>
+      <figure><img src="img/dj.jpg" alt="DJ en la cabina" loading="lazy"><figcaption>groove</figcaption></figure>
+      <figure><img src="img/cerveza.jpg" alt="Cerveza artesanal" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="resenas" id="resenas">
+  <div class="wrap">
+    <div class="cabeza rev">
+      <span class="etiqueta">Reseñas</span>
+      <h2>Lo que dicen <em>en Google</em></h2>
+    </div>
+    <div class="puntaje rev">
+      <span class="num">4,5</span>
+      <div><span class="estrellas" aria-label="4,5 de 5 estrellas">★★★★★</span><small>1.360 opiniones en Google Maps</small></div>
+    </div>
+    <div class="carrusel rev" tabindex="0" aria-label="Opiniones de clientes, deslizá para ver más">
+      <blockquote class="resena"><p>Hermoso lugar, la atención excelente. Las rabas de otro planeta. La cerveza artesanal increíble. Repetimos dos días seguidos.</p><footer>Florencia B.<span>Google Maps</span></footer></blockquote>
+      <blockquote class="resena"><p>Muy buen lugar para ir a comer y tomar buenos tragos, tienen música y una excelente atención.</p><footer>Dey<span>Google Maps</span></footer></blockquote>
+      <blockquote class="resena"><p>Muy rica la comida (pedimos hamburguesas y milanesa) y los tragos de gin.</p><footer>Opinión destacada<span>Google Maps</span></footer></blockquote>
+      <blockquote class="resena"><p>Buen lugar, con tragos variados y cervezas muy ricas y buena música.</p><footer>Opinión destacada<span>Google Maps</span></footer></blockquote>
+    </div>
+    <a class="btn btn-linea" href="https://www.google.com/maps/search/?api=1&query=Carrera+Beach+Villa+Gesell" target="_blank" rel="noopener" style="margin-top:18px">Ver todas en Google</a>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="wrap">
+    <div class="cabeza rev">
+      <span class="etiqueta">Ubicación y horarios</span>
+      <h2>Te esperamos <em>en el centro</em></h2>
+    </div>
+    <div class="ubi-grid">
+      <div class="mapa rev">
+        <iframe title="Mapa de Carrera Beach en Villa Gesell" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Carrera+Beach,+Av.+3+y+Av.+Buenos+Aires,+Villa+Gesell&z=16&output=embed"></iframe>
+      </div>
+      <div class="ficha rev">
+        <h3>Dónde</h3>
+        <p class="dir">Avenida 3 y Avenida Buenos Aires<br>Villa Gesell, Buenos Aires, Argentina</p>
+        <a class="btn btn-linea" style="margin-top:14px;width:100%" href="https://www.google.com/maps/dir/?api=1&destination=Carrera+Beach+Villa+Gesell" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="ficha rev">
+        <h3>Horarios</h3>
+        <p class="estado" id="estado">Vie, sáb y dom desde las 17 h</p>
+        <ul class="horario" id="horario">
+          <li class="off" data-d="1"><span>Lunes</span><span>Cerrado</span></li>
+          <li class="off" data-d="2"><span>Martes</span><span>Cerrado</span></li>
+          <li class="off" data-d="3"><span>Miércoles</span><span>Cerrado</span></li>
+          <li class="off" data-d="4"><span>Jueves</span><span>Cerrado</span></li>
+          <li class="on" data-d="5"><span>Viernes</span><span>17 h a 3 h</span></li>
+          <li class="on" data-d="6"><span>Sábado</span><span>17 h a 3 h</span></li>
+          <li class="on" data-d="0"><span>Domingo</span><span>17 h a 3 h</span></li>
+        </ul>
+        <p class="nota">Hora de cierre según Google Maps; en verano puede cambiar <span class="pend">por confirmar</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="cabeza rev">
+      <span class="etiqueta">Reservas</span>
+      <h2>¿Venís <em>esta noche?</em></h2>
+      <p>Reservá tu mesa por WhatsApp o escribinos por Instagram. Respondemos rápido.</p>
+    </div>
+    <div class="redes rev">
+      <a class="btn btn-oro js-wa" href="#contacto" data-msg="Hola Carrera Beach, quiero reservar una mesa para">Reservar por WhatsApp</a>
+      <a class="btn btn-linea" href="https://www.instagram.com/carrerabeach/" target="_blank" rel="noopener">Instagram @carrerabeach</a>
+      <a class="btn btn-linea" href="https://www.tiktok.com/@carrerabeachvg" target="_blank" rel="noopener">TikTok @carrerabeachvg</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Volver al inicio"><b>CARRERA</b><i>Beach</i></a>
+    <p>Resto · Drinks · Coffee — Villa Gesell, Argentina</p>
+    <p>Beber con moderación. Prohibida la venta de alcohol a menores de 18 años.</p>
+    <p class="creditos">Fotos de muestra: Wikimedia Commons (licencias libres). Se reemplazan por fotos propias del local.</p>
+  </div>
+</footer>
+
+<a class="wa js-wa" href="#contacto" data-msg="Hola Carrera Beach, quiero hacer una consulta" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+/* ===== CONFIGURACIÓN =====
+   Número de WhatsApp POR CONFIRMAR: escribirlo con código de país, sin + ni espacios (ej. 5492255XXXXXX).
+   Mientras esté vacío, los botones de reserva abren el chat de Instagram del local. */
+const WHATSAPP = '';
+
+(function(){
+  // Botones de reserva
+  document.querySelectorAll('.js-wa').forEach(a=>{
+    const msg = a.dataset.msg || 'Hola Carrera Beach, quiero reservar una mesa';
+    a.href = WHATSAPP ? 'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg) : 'https://ig.me/m/carrerabeach';
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+
+  // Barra sólida al bajar + botón reservar en escritorio
+  const barra = document.getElementById('barra'), rb = document.getElementById('reservaBarra');
+  const mq = matchMedia('(min-width:1024px)');
+  const onScroll = ()=>barra.classList.toggle('solida', scrollY > 40);
+  const onMq = ()=>{ rb.style.display = mq.matches ? '' : 'none'; };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  mq.addEventListener('change', onMq); onMq();
+
+  // Menú de celular
+  const panel = document.getElementById('panel'), ab = document.getElementById('abrirMenu'), ce = document.getElementById('cerrarMenu');
+  const toggle = open => { panel.classList.toggle('abierto', open); ab.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : ''; if(open) ce.focus(); };
+  ab.onclick = ()=>toggle(true); ce.onclick = ()=>toggle(false);
+  panel.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>toggle(false)));
+  addEventListener('keydown', e=>{ if(e.key==='Escape') toggle(false); });
+
+  // Pestañas de la carta (con flechas de teclado)
+  const tabs = [...document.querySelectorAll('.tab')];
+  const sel = t => tabs.forEach(x=>{
+    const on = x===t, p = document.getElementById(x.getAttribute('aria-controls'));
+    x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+    p.hidden = !on; p.classList.toggle('activa', on);
+  });
+  tabs.forEach((t,i)=>{
+    t.onclick = ()=>sel(t);
+    t.onkeydown = e=>{ const d = e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(d){ const n = tabs[(i+d+tabs.length)%tabs.length]; sel(n); n.focus(); } };
+  });
+
+  // Horario: marca el día de hoy y si está abierto (hora de Argentina)
+  const ar = new Date(new Date().toLocaleString('en-US',{timeZone:'America/Argentina/Buenos_Aires'}));
+  const d = ar.getDay(), h = ar.getHours();
+  const li = document.querySelector('#horario li[data-d="'+d+'"]'); if(li) li.classList.add('hoy');
+  const abiertoHoy = [5,6,0].includes(d) && h >= 17;
+  const madrugada = [6,0,1].includes(d) && h < 3;
+  const est = document.getElementById('estado');
+  if(abiertoHoy || madrugada){ est.textContent = 'Abierto ahora'; est.classList.add('abierto'); }
+  else est.textContent = 'Cerrado ahora · abrimos vie, sáb y dom a las 17 h';
+
+  // Aparición suave
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('ver'); io.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px'}) : null;
+  document.querySelectorAll('.rev').forEach(el=> io ? io.observe(el) : el.classList.add('ver'));
+})();
+</script>
+</body>
+</html>
